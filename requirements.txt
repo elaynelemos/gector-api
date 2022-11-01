@@ -9,3 +9,5 @@ numpy==1.19.5
 jupyterlab==3.5.0
 Flask==2.2.2
 uWSGI==2.0.21
+prometheus-client
+prometheus-flask-exporter
