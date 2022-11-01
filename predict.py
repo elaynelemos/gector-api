@@ -119,6 +119,9 @@ if __name__ == '__main__':
     parser.add_argument('--input_file',
                         help='Path to the evalset file',
                         required=False)
+    parser.add_argument('--sentences',
+                        help='Text in case of commandline input',
+                        required=False)
     parser.add_argument('--output_file',
                         help='Path to the output file',
                         required=False)
@@ -181,9 +184,8 @@ if __name__ == '__main__':
 
     # main(args)
 
-    sentences = f'Nevertheless , while I fell that a carrier should not be obligated to tell his or her relatives about the genetic risk , I would like to suggest the person to at least share the information with her or his potential partner ( husband or wife ) since the individual \'s genetic risk may affect their future children .\n'
     correct_sentences(
-        sentences,
+        sentences=args.sentences,
         vocab_path=args.vocab_path,
         model_path=args.model_path,
         max_len=args.max_len,
