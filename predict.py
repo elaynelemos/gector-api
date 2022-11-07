@@ -59,7 +59,6 @@ def correct_sentences(sentences, vocab_path, model_path, max_len, min_len, itera
                         min_error_probability, lowercase_tokens, transformer_model,
                         special_tokens_fix, additional_confidence, batch_size,
                         additional_del_confidence, is_ensemble, normalize, weights):
-    print(sentences)
     # get all paths
     model = GecBERTModel(vocab_path=vocab_path,
                          model_paths=model_path,
@@ -75,11 +74,11 @@ def correct_sentences(sentences, vocab_path, model_path, max_len, min_len, itera
                          is_ensemble=is_ensemble,
                          weigths=weights)
 
-    cnt_corrections = predict_for_sentences(sentences, model,
-                                            batch_size=batch_size,
-                                            to_normalize=normalize)
+    corrections = predict_for_sentences(sentences, model,
+                                        batch_size=batch_size,
+                                        to_normalize=normalize)
     # evaluate with m2 or ERRANT
-    print(f"Produced overall corrections: {cnt_corrections}")
+    print(f"\nProduced overall corrections: {corrections}")
 
 
 def main(args):
@@ -104,6 +103,28 @@ def main(args):
     # evaluate with m2 or ERRANT
     print(f"Produced overall corrections: {cnt_corrections}")
 
+
+#### Example:
+
+# sentences = f'Nevertheless , while I fell that a carrier should not be obligated to tell his or her relatives about the genetic risk , I would like to suggest the person to at least share the information with her or his potential partner ( husband or wife ) since the individual \'s genetic risk may affect their future children .\n'
+# correct_sentences(
+#     sentences=args.sentences,
+#     vocab_path=args.vocab_path,
+#     model_path=args.model_path,
+#     max_len=args.max_len,
+#     min_len=args.min_len,
+#     iteration_count=args.iteration_count,
+#     min_error_probability=args.min_error_probability,
+#     lowercase_tokens=args.lowercase_tokens,
+#     transformer_model=args.transformer_model,
+#     special_tokens_fix=args.special_tokens_fix,
+#     additional_confidence=args.additional_confidence,
+#     batch_size=args.batch_size,
+#     additional_del_confidence=args.additional_del_confidence,
+#     is_ensemble=args.is_ensemble,
+#     normalize=args.normalize,
+#     weights=args.weights
+# )
 
 
 if __name__ == '__main__':
@@ -202,3 +223,4 @@ if __name__ == '__main__':
         normalize=args.normalize,
         weights=args.weights
     )
+
