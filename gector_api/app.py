@@ -9,7 +9,9 @@ def hello_world():
 
 @app.route('/correct')
 def correct_sentence():
-    sentence = request.args.get('sentence')
+    request_json = request.get_json()
+    sentence = request_json.get('sentence')
+
     corrected = correct_sentences(
         sentences=sentence,
         vocab_path='../data/output_vocabulary/',
@@ -28,7 +30,9 @@ def correct_sentence():
         normalize='store_true',
         weights=None
     )
-    return corrected
+    return {
+        'corrected':corrected
+    }
 
 
 if __name__ == '__main__':
