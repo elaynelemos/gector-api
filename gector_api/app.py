@@ -12,8 +12,8 @@ def correct_sentence():
     sentence = request.args.get('sentence')
     corrected = correct_sentences(
         sentences=sentence,
-        vocab_path='data/output_vocabulary/',
-        model_path='models/xlnet_0_gectorv2.th',
+        vocab_path='../data/output_vocabulary/',
+        model_path='../models/xlnet_0_gectorv2.th',
         max_len=200,
         min_len=3,
         iteration_count=5,
@@ -25,6 +25,7 @@ def correct_sentence():
         batch_size=128,
         additional_del_confidence=0,
         is_ensemble=0,
+        normalize='store_true',
         weights=None
     )
     return corrected
