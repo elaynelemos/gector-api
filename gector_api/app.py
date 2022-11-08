@@ -1,4 +1,5 @@
 from flask import Flask, request
+from gector_api.predict import correct_sentences
 
 app = Flask(__name__)
 
@@ -8,7 +9,25 @@ def hello_world():
 
 @app.route('/correct')
 def correct_sentence():
-    return request.get_json()
+    sentence = request.args.get('sentence')
+    corrected = correct_sentences(
+        sentences=sentence,
+        vocab_path='data/output_vocabulary/',
+        model_path='models/xlnet_0_gectorv2.th',
+        max_len=200,
+        min_len=3,
+        iteration_count=5,
+        min_error_probability=0.0,
+        lowercase_tokens=0,
+        transformer_model='xlnet',
+        special_tokens_fix=1,
+        additional_confidence=0,
+        batch_size=128,
+        additional_del_confidence=0,
+        is_ensemble=0,
+        weights=None
+    )
+    return corrected
 
 
 if __name__ == '__main__':
