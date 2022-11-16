@@ -52,7 +52,7 @@ class GecBERTModel(object):
         self.del_conf = del_confidence
         self.resolve_cycles = resolve_cycles
         # set training parameters and operations
-
+        model_paths = [model_paths] if isinstance(model_paths, str) else model_paths
         self.indexers = []
         self.models = []
         for model_path in model_paths:
