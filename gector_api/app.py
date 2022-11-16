@@ -26,7 +26,7 @@ def correct_sentence():
         transformer_model='xlnet',
         special_tokens_fix=0,
         additional_confidence=0,
-        batch_size=64,
+        batch_size=128,
         additional_del_confidence=0,
         is_ensemble=0,
         normalize='store_true',
