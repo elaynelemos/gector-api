@@ -8,7 +8,7 @@ app = Flask(__name__)
 def hello_world():
     return '<p>Hello, World!</p>'
 
-@app.route('/correct')
+@app.route('/correct', methods=['POST'])
 def correct_sentence():
     working_dir = os.getcwd()
     request_json = request.get_json()
